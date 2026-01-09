@@ -4,29 +4,38 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello World! This is the Exercise2 Project.");
-        Console.Write("What is your grade: ");
+        Console.Write("What is your score: ");
         string grade= Console.ReadLine();
         int number= int.Parse(grade);
+        string letterG= "";
         if (number >= 90)
         {
-            Console.WriteLine("Your score is: A");
+            letterG= "A";
         }
         else if (number >= 80)
         {
-            Console.WriteLine("Your score is: B");
+            letterG= "B";
         }
         else if (number >=70)
         {
-            Console.WriteLine("Your score is: C");
+            letterG= "C";
         }
         else if (number >= 60)
         {
-            Console.WriteLine("Your score is: D");
+            letterG= "D";
         }
         else
         {
-            Console.WriteLine("Your score is: F");
+            letterG= "F";
+        }
+        Console.WriteLine($"Your grade is: {letterG}");
+        if (number >=70)
+        {
+            Console.WriteLine("Congratulations! you pass");
+        }
+        else
+        {
+            Console.WriteLine("Good effort, study more next time");
         }
 
     }
