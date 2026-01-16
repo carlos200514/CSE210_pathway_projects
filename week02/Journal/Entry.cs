@@ -14,7 +14,7 @@ public class Entry
     }
     public string ToFileString()
     {
-        return $"Date: {Date} - Prompt: {Prompt}| {Response}";
+        return $"Date: {Date} | Prompt: {Prompt}| {Response}";
     }
     public static Entry FromFileString(string line)
     {
