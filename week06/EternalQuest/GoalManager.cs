@@ -1,3 +1,4 @@
+// I add level up method and the program tracks the level and the points to level up
 using System;
 using System.Collections.Generic;
 using System.IO;
