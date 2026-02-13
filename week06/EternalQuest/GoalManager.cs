@@ -6,10 +6,14 @@ public class GoalManager
 {
     private List<Goal> _goals;
     private int _score;
+    private int _level;
+    private int _pointsLevelUp;
     public GoalManager()
     {
         _goals= new List<Goal>();
         _score= 0;
+        _level=1;
+        _pointsLevelUp=1000;
     }
     public void Start()
     {
@@ -54,7 +58,8 @@ public class GoalManager
     }
     public void DisplayPlayerInfo()
     {
-        Console.WriteLine($"You have {_score} points in total");
+        Console.WriteLine($"Your score: {_score} points");
+        Console.WriteLine($"Your Level: {_level}-----{_score}/{_pointsLevelUp}");
     }
     public void ListGoalNames()
     {
@@ -117,6 +122,7 @@ public class GoalManager
         Console.WriteLine();
         int earned= _goals[index].RecordEvent();
         _score += earned;
+        CheckLevelUp();
         Console.WriteLine($"You earned {earned} points");
         Console.WriteLine("Press Enter to continue...");
         Console.ReadLine();
@@ -131,6 +137,9 @@ public class GoalManager
             foreach (Goal goal in _goals)
             {
                 output.WriteLine(goal.GetStringRepresentation());
+                output.WriteLine(_score);
+                output.WriteLine(_level);
+                output.WriteLine(_pointsLevelUp);
             }
         }
     }
@@ -140,6 +149,8 @@ public class GoalManager
         string filename= Console.ReadLine();
         string[] lines= File.ReadAllLines(filename);
         _score= int.Parse(lines[0]);
+        _level= int.Parse(lines[1]);
+        _pointsLevelUp= int.Parse(lines[2]);
         _goals.Clear();
         for (int i=1; i < lines.Length; i++)
         {
@@ -158,6 +169,15 @@ public class GoalManager
             {
                 _goals.Add(new ChecklistGoal(parts[1], parts[2], int.Parse(parts[3]),int.Parse(parts[4]), int.Parse(parts[5]), int.Parse(parts[6])));
             }
+        }
+    }
+    public void CheckLevelUp()
+    {
+        while (_score >= _pointsLevelUp)
+        {
+            _level++;
+            _pointsLevelUp +=1000;
+            Console.WriteLine($"New LEVEL UP🏆! Your current level is: {_level}");
         }
     }
 }
